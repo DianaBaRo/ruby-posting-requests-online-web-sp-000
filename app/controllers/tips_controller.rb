@@ -9,6 +9,7 @@ class TipsController < ApplicationController
 
     redirect_to tips_path
   end
+<<<<<<< HEAD
   
   def index
 	  resp = Faraday.get("https://api.foursquare.com/v2/lists/self/tips") do |req|
@@ -18,4 +19,14 @@ class TipsController < ApplicationController
 	  @results = JSON.parse(resp.body)["response"]["tips"]["items"]
 	end
 
+=======
+
+  def index
+    resp = Faraday.get("https://api.foursquare.com/v2/lists/self/tips") do |req|
+      req.params['oauth_token'] = session[:token]
+      req.params['v'] = '20160201'
+    end
+    @results = JSON.parse(resp.body)["response"]["tips"]["items"]
+  end
+>>>>>>> 224ea5c05714e0658d0af99ba5023465d4874efc
 end
